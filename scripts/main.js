@@ -1,27 +1,31 @@
 const sectionCard = document.querySelector('#sectionCard')
 
 let arrayImgs = []
-let nameType = [];
+
 
 const gerarCard = async () => {
 
-  for( let i = 0 ; i < arrayUrlPokemon.length ; i++){
+  for( let i = 0 ; i < 150 ; i++){
     let pokemonsInformçãoDaApi = await fetch(arrayUrlPokemon[i]).then(
     (promisePokemon) => promisePokemon.json().then((infor) => infor))
     
     
+   
     
-   let return_ = new Card(
-     pokemonsInformçãoDaApi.sprites.other.dream_world.front_default,pokemonsInformçãoDaApi.name,pokemonsInformçãoDaApi.types
-       ,pokemonsInformçãoDaApi.id
-       ,pokemonsInformçãoDaApi.stats);
+   let ValoresParaContrutor = new Card(
+      pokemonsInformçãoDaApi.sprites.other.dream_world.front_default
+      ,pokemonsInformçãoDaApi.name
+      ,pokemonsInformçãoDaApi.types
+      ,pokemonsInformçãoDaApi.id
+  
+      ) ;
    
   
   
-   sectionCard.innerHTML += return_.criarCard()
+   sectionCard.innerHTML += ValoresParaContrutor.criarCard()
    
     addEventCard()
-
+  
   }
 }
 
@@ -35,23 +39,92 @@ const addEventCard = () => {
   }
 }
 
+
+
+
+
 const uploadLocalStorege = (e) =>{ 
   
   const target = e.target;
   
-  const parent = target.parentNode
+  const parent = target.parentNode;
   
-  const parent_id = Number( parent.id)
+  const parent_id = Number(parent.id);
   
-  localStorage.setItem(`id${parent_id}`, parent_id)
-   
+  const chaveLocalStorege =`id${parent_id}`;
+
+  localStorage.setItem( chaveLocalStorege , parent_id);
+
+
+  const passarArrayImgsParaLocalstorege = (array) => {
+
+    localStorage.setItem('arrayImgs', JSON.stringify(array))
+  }
+
+  passarArrayImgsParaLocalstorege(arrayImgs)
+
+
+  
+  const passarChaveLocalStoregePelaURL = (valor) => {
+    window.location = `moreCard.html?minhaVariavel=${valor}`
+  }
+
+  passarChaveLocalStoregePelaURL(chaveLocalStorege)
+
 }
 
-const gerarMoreCard = () => {
+
+
+const gerarMoreCard = async () => {
   
+  
+  console.log('aqui');
   
   const moreContainer = document.querySelector('.container')
-  
-  moreContainer.innerHTML = moreInfor()
-  
+
+  let chaveLocal; 
+
+  function queryString(parameter) {  
+    var loc = location.search.substring(1, location.search.length);   
+    var param_value = false;   
+    var params = loc.split("&");   
+    for (i=0; i<params.length;i++) {   
+        param_name = params[i].substring(0,params[i].indexOf('='));   
+        if (param_name == parameter) {                                          
+            param_value = params[i].substring(params[i].indexOf('=')+1)   
+        }   
+    }   
+    if (param_value) {   
+        return chaveLocal = param_value ;   
+    }   
+    else {   
+        return undefined ;   
+    }   
+}
+queryString("minhaVariavel");
+
+
+
+const idLocal = parseInt(localStorage.getItem(chaveLocal) - 1)
+
+
+const arrayStruingRecuperado= localStorage.getItem('arrayImgs') 
+
+  const arrayRecuperadoLocal = JSON.parse( arrayStruingRecuperado);
+
+    console.log(arrayRecuperadoLocal);
+  console.log(arrayRecuperadoLocal[idLocal]);
+
+
+
+
+
+  const valoresParaConstrutorMore = new MoreCardClass(
+      pokemonsInformçãoDaApi.id,
+      pokemonsInformçãoDaApi.name,
+      pokemonsInformçãoDaApi.stats
+  )
+
+    moreContainer.innerHTML = valoresParaConstrutorMore.moreInfor()
+    
 }

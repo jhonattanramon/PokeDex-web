@@ -4,28 +4,30 @@ class Card {
     this.name = name;
     this.type = type; 
     this.id = id
-    this.arrayStats = arrayStats
+   
   }
   
   criarCard(){
     
    
-
+  let nameType = [];
   let estiloBackGroud = [];
 
   
-  for( let i = 0 ; i < this.type.length ; i++){
 
-   nameType.push(this.type[i].type.name)
-   arrayImgs.push(this.img)
-   
   
-   
-  
+  for( let i = 0 ; i < this.type.length ; i++){
+    nameType.push(this.type[i].type.name)
   }
   //console.log(arrayImgs);
-  console.log(nameType);
 
+  const colocarImgsNoArrray = (array) => {
+     
+    array.push( this.img)
+    
+  }
+
+  colocarImgsNoArrray(arrayImgs)
   
   
   const funcBack=()=>{
@@ -87,7 +89,7 @@ class Card {
    
   return` 
     
-  <a href = 'moreCard.html' class='linkCard' id = '${this.id}'>
+  <a class='linkCard' id = '${this.id}'>
   <div class = 'test'>  </div>
     <div style = '${ estiloBackGroud.map( (y) => { return y})}' class = 'divCard'> 
      
@@ -103,31 +105,34 @@ class Card {
     </div> 
     
   </a>
-  
-    
-    
+
     `
-    
-    
-    
-    
-    
-  
 }
 
+  }
+  
+ 
+  class MoreCardClass {
 
-
-
+    constructor(id, name, arrayStats,img){
+      
+      this.id = id;
+      this.name = name;
+      this.arrayStats = arrayStats;
+      this.img = img
+    }
 
     moreInfor(){
+        
       
+      console.log('more');
       let baseStats = []
       
       for (let i = i ; arrayStats.length; i++) {
         
         baseStats.push( arrayStats[i].base_stat)
       }
-      console.log(baseStats);
+     
       
       
       
@@ -154,12 +159,12 @@ class Card {
       <h1> Base states</h1>
       
       <ul>
-       <li> <b>Hp</b> <p>36</p>  </li>
-       <li> <b>Attack</b> <p>52</p>  </li>
-       <li> <b>Defense</b> <p>43</p>  </li>
-       <li> <b>spacial-Attack </b> <p>60</p>  </li>
-       <li> <b>spacial-Defense </b> <p>59</p>  </li>
-      <li> <b>speed </b> <p>65</p>  </li>
+       <li> <b>Hp</b> <p${this.arrayStats[0].base_stats}</p>  </li>
+       <li> <b>Attack</b> <p>${this.arrayStats[1].baseStats}</p>  </li>
+       <li> <b>Defense</b> <p>${this.arrayStats[2].baseStats}</p>  </li>
+       <li> <b>spacial-Attack </b> <p>${this.arrayStats[3].baseStats}</p>  </li>
+       <li> <b>spacial-Defense </b> <p>${this.arrayStats[4].baseStats} </p>  </li>
+      <li> <b>speed </b> <p>${this.arrayStats[5].baseStats}</p>  </li>
 
       </ul>
       
@@ -167,8 +172,7 @@ class Card {
    `
     }
 
+
   }
-  
- 
    
    
