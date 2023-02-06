@@ -1,6 +1,8 @@
 const sectionCard = document.querySelector('#sectionCard')
 
 let arrayImgs = []
+let arrayStats = []
+
 
 
 const gerarCard = async () => {
@@ -17,10 +19,10 @@ const gerarCard = async () => {
       ,pokemonsInformçãoDaApi.name
       ,pokemonsInformçãoDaApi.types
       ,pokemonsInformçãoDaApi.id
-  
+      ,pokemonsInformçãoDaApi.stats
       ) ;
-   
-  
+    
+    
   
    sectionCard.innerHTML += ValoresParaContrutor.criarCard()
    
@@ -56,29 +58,32 @@ const uploadLocalStorege = (e) =>{
   localStorage.setItem( chaveLocalStorege , parent_id);
 
 
+
+
+  
+
+
   const passarArrayImgsParaLocalstorege = (array) => {
-
-    localStorage.setItem('arrayImgs', JSON.stringify(array))
+      localStorage.setItem('arrayImgs', JSON.stringify(array))
   }
-
   passarArrayImgsParaLocalstorege(arrayImgs)
 
 
   
+ 
+
   const passarChaveLocalStoregePelaURL = (valor) => {
     window.location = `moreCard.html?minhaVariavel=${valor}`
   }
-
   passarChaveLocalStoregePelaURL(chaveLocalStorege)
+
 
 }
 
 
 
-const gerarMoreCard = async () => {
-  
-  
-  console.log('aqui');
+
+const gerarMoreCard =  () => {
   
   const moreContainer = document.querySelector('.container')
 
@@ -91,7 +96,8 @@ const gerarMoreCard = async () => {
     for (i=0; i<params.length;i++) {   
         param_name = params[i].substring(0,params[i].indexOf('='));   
         if (param_name == parameter) {                                          
-            param_value = params[i].substring(params[i].indexOf('=')+1)   
+            param_value = params[i].substring(params[i].indexOf('=') + 
+            1)   
         }   
     }   
     if (param_value) {   
@@ -100,29 +106,34 @@ const gerarMoreCard = async () => {
     else {   
         return undefined ;   
     }   
-}
+} //pegar valores pela url
 queryString("minhaVariavel");
 
 
 
-const idLocal = parseInt(localStorage.getItem(chaveLocal) - 1)
+  const idLocal = parseInt(localStorage.getItem(chaveLocal) - 1)
 
 
-const arrayStruingRecuperado= localStorage.getItem('arrayImgs') 
+  const arrayStruingRecuperado= localStorage.getItem('arrayImgs') 
 
   const arrayRecuperadoLocal = JSON.parse( arrayStruingRecuperado);
 
-    console.log(arrayRecuperadoLocal);
-  console.log(arrayRecuperadoLocal[idLocal]);
+
+    console.log(arrayRecuperadoLocal[idLocal]);
+  const imgDoPokemonSelecionado = arrayRecuperadoLocal[idLocal]
+
 
 
 
 
 
   const valoresParaConstrutorMore = new MoreCardClass(
-      pokemonsInformçãoDaApi.id,
-      pokemonsInformçãoDaApi.name,
-      pokemonsInformçãoDaApi.stats
+      2,
+      2,
+      2,
+      imgDoPokemonSelecionado
+
+
   )
 
     moreContainer.innerHTML = valoresParaConstrutorMore.moreInfor()

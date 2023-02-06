@@ -1,9 +1,10 @@
 class Card {
-  constructor(img,name,type,id,arrayStats) {
+  constructor(img,name,type,id, stats) {
     this.img = img;
     this.name = name;
     this.type = type; 
-    this.id = id
+    this.id = id;
+    this.stats = stats
    
   }
   
@@ -13,78 +14,36 @@ class Card {
   let nameType = [];
   let estiloBackGroud = [];
 
-  
 
-  
+
+    
   for( let i = 0 ; i < this.type.length ; i++){
-    nameType.push(this.type[i].type.name)
+
+    nameType.push(this.type[i].type.name) 
+  
   }
-  //console.log(arrayImgs);
+
+  funcBack()
+  
+  const colocarStatsNoArray = (array) => {
+    array.push(this.stats)
+  }
+  colocarStatsNoArray(arrayStats)
+  
 
   const colocarImgsNoArrray = (array) => {
      
     array.push( this.img)
     
   }
-
   colocarImgsNoArrray(arrayImgs)
   
   
-  const funcBack=()=>{
-    nameType.map( (i) => {
-      
+  
+
+
+ 
     
-    if (i == 'water' || i == 'ice' || i == 'flying') {
-    
-      estiloBackGroud.push( 'background-image:var(--backGroud-water-ice-flying);');
-    
-    
-    }
-    if (i == 'fire') {
-     estiloBackGroud.push( 'background-image:var(--backGroud-fire);')
-    
-    }
-    if (i == 'electric' || i == 'fairy') {
-    
-      estiloBackGroud.push('background-image:va(--backGroud-eletric-fairy);')
-    
-    }
-    if (i == 'grass' || i == 'dragon' || i == 'bug') {
-    
-      estiloBackGroud.push('background-image:var(--backGroud-gass-dragon-bug);')
-    
-    }
-    if (i == 'ghost' || i == 'rock') {
-    
-      estiloBackGroud.push('background-image:var(  --backGroud-ghost-rock);')
-    
-    }
-    if (i == 'dark' || i == 'psychic') {
-    
-      estiloBackGroud.push('background-image:var(   --backGroud-dark-psychic);')
-    
-    }
-    if (i == 'poison' || i == 'fighting') {
-    
-      estiloBackGroud.push('background-image:var(   --backGroud-poison-fighting);')
-    
-    }
-    if (i == 'normal') {
-    
-      estiloBackGroud.push('background-image:var(     --backGroud-normal);')
-    
-    }
-    if (i == 'ground' || i == 'stell') {
-    
-      estiloBackGroud.push('background-image:var(       --backGroud-ground-stell);')
-    
-    }
-    
-    
-    
-    })}
-    
-    funcBack()
     
    
   return` 
@@ -128,10 +87,10 @@ class Card {
       console.log('more');
       let baseStats = []
       
-      for (let i = i ; arrayStats.length; i++) {
+      //for (let i = i ; arrayStats.length; i++) {
         
-        baseStats.push( arrayStats[i].base_stat)
-      }
+        //baseStats.push( arrayStats[i].base_stat)
+      //}
      
       
       
@@ -159,12 +118,12 @@ class Card {
       <h1> Base states</h1>
       
       <ul>
-       <li> <b>Hp</b> <p${this.arrayStats[0].base_stats}</p>  </li>
-       <li> <b>Attack</b> <p>${this.arrayStats[1].baseStats}</p>  </li>
-       <li> <b>Defense</b> <p>${this.arrayStats[2].baseStats}</p>  </li>
-       <li> <b>spacial-Attack </b> <p>${this.arrayStats[3].baseStats}</p>  </li>
-       <li> <b>spacial-Defense </b> <p>${this.arrayStats[4].baseStats} </p>  </li>
-      <li> <b>speed </b> <p>${this.arrayStats[5].baseStats}</p>  </li>
+       <li> <b>Hp</b> <p></p>  </li>
+       <li> <b>Attack</b> <p></p>  </li>
+       <li> <b>Defense</b> <p></p>  </li>
+       <li> <b>spacial-Attack </b> <p></p>  </li>
+       <li> <b>spacial-Defense </b> <p></p>  </li>
+      <li> <b>speed </b> <p></p>  </li>
 
       </ul>
       
