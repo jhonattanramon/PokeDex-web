@@ -3,7 +3,7 @@
   margin:0;
   box-sizing: border-box;
   text-decoration: none;
-  
+  list-style: none;
  
 }
 :root{
@@ -88,4 +88,49 @@ body {
   background: transparent;
   width: var(--tamanho-card-y);
   height: var(--tamanho-card-x);
+}
+
+.list_base_states{
+display: flex;
+justify-content: center;
+flex-direction: column;
+gap: 10px;
+text-transform: uppercase;
+background: linear-gradient(0deg, rgba(231,231,231,1) 0%, rgba(249,249,249,1) 100%);
+width: 350px;
+height: 300px;
+padding: 50px;
+border-radius: 50px;
+
+}
+
+.list_base_states li{
+  display: flex;
+  justify-content: space-between;
+}
+
+.container{
+  background-color: #3c3c3c;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.container_conteudo{
+  display: flex;
+  align-items: center;
+}
+
+.div_conteudo{
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.span_id_name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
 }

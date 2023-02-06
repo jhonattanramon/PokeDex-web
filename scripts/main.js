@@ -57,10 +57,12 @@ const uploadLocalStorege = (e) =>{
 
   localStorage.setItem( chaveLocalStorege , parent_id);
 
-
-
-
   
+
+   const passarArrayStatsLocalstorege = (array) => {
+    localStorage.setItem('arrayStats', JSON.stringify(array))
+   }
+   passarArrayStatsLocalstorege(arrayStats)
 
 
   const passarArrayImgsParaLocalstorege = (array) => {
@@ -93,13 +95,21 @@ const gerarMoreCard =  () => {
     var loc = location.search.substring(1, location.search.length);   
     var param_value = false;   
     var params = loc.split("&");   
+
+
     for (i=0; i<params.length;i++) {   
-        param_name = params[i].substring(0,params[i].indexOf('='));   
-        if (param_name == parameter) {                                          
+        param_name = params[i].substring(0,params[i].indexOf('='));
+        param_nameStats =  params[i].substring(0,params[i].indexOf('='));
+
+        if (param_name == parameter) {  
+
             param_value = params[i].substring(params[i].indexOf('=') + 
             1)   
         }   
+
+        
     }   
+
     if (param_value) {   
         return chaveLocal = param_value ;   
     }   
@@ -118,8 +128,14 @@ queryString("minhaVariavel");
 
   const arrayRecuperadoLocal = JSON.parse( arrayStruingRecuperado);
 
+  const arrayStats_struingRecuperado = localStorage.getItem('arrayStats')
 
-    console.log(arrayRecuperadoLocal[idLocal]);
+  const arrayStats_recuperadoLocal = JSON.parse(arrayStats_struingRecuperado)
+
+  console.log(arrayStats_recuperadoLocal);
+
+
+    
   const imgDoPokemonSelecionado = arrayRecuperadoLocal[idLocal]
 
 
@@ -128,9 +144,9 @@ queryString("minhaVariavel");
 
 
   const valoresParaConstrutorMore = new MoreCardClass(
-      2,
-      2,
-      2,
+    2,
+    2,
+    arrayStats_recuperadoLocal[idLocal],
       imgDoPokemonSelecionado
 
 
