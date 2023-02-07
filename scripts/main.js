@@ -26,10 +26,12 @@ const gerarCard = async () => {
       ) ;
     
     
+
   
    sectionCard.innerHTML += ValoresParaContrutor.criarCard()
+
+   addEventCard()
    
-    addEventCard()
   
   }
 }

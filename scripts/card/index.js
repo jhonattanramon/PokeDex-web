@@ -151,13 +151,13 @@ class Card {
    
       <div class = 'container_conteudo'> 
  
-      <div> <a href="moreCard.html"> <i class="icon-arrow fa-solid fa-chevron-left"></i> </a> </div>
+      <div> <a href="index.html"> <i class="icon-arrow fa-solid fa-chevron-left"></i> </a> </div>
 
 
    <div class = 'div_conteudo_left'>
   
       <span> <img  class='img_more_poke'src="${this.img}" alt=""></span>
-      
+
       <span class = 'span_id_name'>
 
       <p>#${this.id}</p>  
@@ -195,7 +195,7 @@ class Card {
       
     </div>
 
-    <div> <a href="moreCard.html"> <i class="icon-arrow fa-solid fa-angle-right"></i> </a> </div>
+    <div> <a href="index.html"> <i class="icon-arrow fa-solid fa-angle-right"></i> </a> </div>
 
 
     </div> 
