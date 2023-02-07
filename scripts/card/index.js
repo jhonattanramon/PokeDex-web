@@ -24,19 +24,22 @@ class Card {
   
 
   
-  const colocarStatsNoArray = (array) => {
+  const passarStatsNoArray = (array) => {
     array.push(this.stats)
   }
-  colocarStatsNoArray(arrayStats)
+  passarStatsNoArray(arrayStats)
   
 
-  const colocarImgsNoArrray = (array) => {
+  const passarImgsNoArrray = (array) => {
      
     array.push( this.img)
     
   }
-  colocarImgsNoArrray(arrayImgs)
+  passarImgsNoArrray(arrayImgs)
+
+  const passarNameParaArray = (array) => { array.push( this.name)  }
   
+    passarNameParaArray(arrayName)
     
  
 
@@ -105,7 +108,7 @@ class Card {
    
   return` 
     
-  <a class='linkCard' id = '${this.id}'>
+  <a class='linkCard' id='${this.id}' >
   <div class = 'test'>  </div>
     <div style = '${ estiloBackGroud.map( (y) => { return y})}' class = 'divCard'> 
      
@@ -141,42 +144,40 @@ class Card {
     moreInfor(){
         
       
-      console.log('more');
-      let baseStats = []
+      console.log('more'); 
       
-      //for (let i = i ; arrayStats.length; i++) {
-        
-        //baseStats.push( arrayStats[i].base_stat)
-      //}
-     
-      
-      
-      
+    
       return `   
-      <div> <a href="index.html"> <i class="fa-solid fa-chevron-left"></i> </a> </div>
    
       <div class = 'container_conteudo'> 
  
-   <div>
-      <span> <img src="${this.img}" alt=""></span>
+      <div> <a href="moreCard.html"> <i class="icon-arrow fa-solid fa-chevron-left"></i> </a> </div>
+
+
+   <div class = 'div_conteudo_left'>
+  
+      <span> <img  class='img_more_poke'src="${this.img}" alt=""></span>
+      
+      <span class = 'span_id_name'>
+
+      <p>#${this.id}</p>  
+       <p>${this.name}</p> 
+     
+    
+     </span>
    </div>
 
 
-    <div class = 'div_conteudo'>
+    <div class = 'div_conteudo_right'>
 
-      <span class = 'span_id_name'> 
-
-      <p>#${this.id}</p>
-      <h3>${this.name}</h3>
-    
-      
-      </span>
+     
       
       
-      
-      <h1 class = 'base_states'> Base states</h1>
+     
       
       <ul class = 'list_base_states'>
+
+      <h1 class = 'base_states'> Base states</h1>
        <li> <b>Hp</b> <p>${this.arrayStats[0].base_stat
        }</p>  </li>
        <li> <b>Attack</b> <p>${this.arrayStats[1].base_stat
@@ -193,6 +194,9 @@ class Card {
       </ul>
       
     </div>
+
+    <div> <a href="moreCard.html"> <i class="icon-arrow fa-solid fa-angle-right"></i> </a> </div>
+
 
     </div> 
    `

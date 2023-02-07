@@ -2,12 +2,15 @@ const sectionCard = document.querySelector('#sectionCard')
 
 let arrayImgs = []
 let arrayStats = []
+let arrayName = []
+
+
 
 
 
 const gerarCard = async () => {
 
-  for( let i = 0 ; i < 150 ; i++){
+  for( let i = 0 ; i < 150; i++){
     let pokemonsInformçãoDaApi = await fetch(arrayUrlPokemon[i]).then(
     (promisePokemon) => promisePokemon.json().then((infor) => infor))
     
@@ -52,7 +55,7 @@ const uploadLocalStorege = (e) =>{
   const parent = target.parentNode;
   
   const parent_id = Number(parent.id);
-  
+    
   const chaveLocalStorege =`id${parent_id}`;
 
   localStorage.setItem( chaveLocalStorege , parent_id);
@@ -69,6 +72,11 @@ const uploadLocalStorege = (e) =>{
       localStorage.setItem('arrayImgs', JSON.stringify(array))
   }
   passarArrayImgsParaLocalstorege(arrayImgs)
+
+  const passarArrayNameParaLocalstorege = (array) => {
+    localStorage.setItem('arrayName', JSON.stringify(array))
+}
+passarArrayNameParaLocalstorege(arrayName)
 
 
   
@@ -92,9 +100,9 @@ const gerarMoreCard =  () => {
   let chaveLocal; 
 
   function queryString(parameter) {  
-    var loc = location.search.substring(1, location.search.length);   
-    var param_value = false;   
-    var params = loc.split("&");   
+    let loc = location.search.substring(1, location.search.length);   
+    let param_value = false;   
+    let params = loc.split("&");   
 
 
     for (i=0; i<params.length;i++) {   
@@ -121,7 +129,7 @@ queryString("minhaVariavel");
 
 
 
-  const idLocal = parseInt(localStorage.getItem(chaveLocal) - 1)
+  const idLocal = parseInt(localStorage.getItem(chaveLocal) - 1 )
 
 
   const arrayStruingRecuperado= localStorage.getItem('arrayImgs') 
@@ -132,22 +140,22 @@ queryString("minhaVariavel");
 
   const arrayStats_recuperadoLocal = JSON.parse(arrayStats_struingRecuperado)
 
-  console.log(arrayStats_recuperadoLocal);
+  const arrayName_struingRecuperado = localStorage.getItem('arrayName')
 
-
+  const arrayName_recuperadoLocal = JSON.parse(arrayName_struingRecuperado)
     
   const imgDoPokemonSelecionado = arrayRecuperadoLocal[idLocal]
 
 
 
-
+  console.log(idLocal);
 
 
   const valoresParaConstrutorMore = new MoreCardClass(
-    2,
-    2,
+    idLocal + 1,
+    arrayName_recuperadoLocal[idLocal],
     arrayStats_recuperadoLocal[idLocal],
-      imgDoPokemonSelecionado
+    imgDoPokemonSelecionado
 
 
   )
